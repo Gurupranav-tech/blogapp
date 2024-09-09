@@ -8,6 +8,7 @@ const context = createContext({
   email: "",
   setUser(_email: string, _username: string) {},
   setToken(_token: string) {},
+  logout() {},
 });
 
 export function useAuth() {
@@ -47,6 +48,11 @@ export default function AuthProvider({
     },
     setToken(token: string) {
       setToken(token);
+    },
+    logout() {
+      setUsername("");
+      setEmail("");
+      setToken("");
     },
   };
 

@@ -63,6 +63,8 @@ export class AuthService {
           email,
         },
       });
+      if (!user)
+        throw new HttpException('Invalid Email ID', HttpStatus.BAD_REQUEST);
 
       if (!(await argon.verify(user.password, password)))
         throw new HttpException('Wrong password', HttpStatus.BAD_REQUEST);

@@ -39,7 +39,8 @@ export class AuthService {
         user.password = '';
         const token = await this.jwtService.signAsync(user);
         return token;
-      } catch {
+      } catch(err) {
+        console.error(err);
         throw new HttpException('Email already in use', HttpStatus.BAD_REQUEST);
       }
     } catch (err) {
@@ -73,6 +74,7 @@ export class AuthService {
       const token = await this.jwtService.signAsync(user);
       return token;
     } catch (err) {
+      console.log(err);
       throw new HttpException(err, HttpStatus.BAD_REQUEST);
     }
   }

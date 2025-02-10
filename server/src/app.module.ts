@@ -3,10 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
-import { TodosModule } from './todos/todos.module';
+import { PostModule } from './post/post.module';
 
 @Module({
-  imports: [AuthModule, ConfigModule.forRoot(), TodosModule],
+  imports: [AuthModule, ConfigModule.forRoot(), PostModule],
   controllers: [AppController],
   providers: [AppService],
 })

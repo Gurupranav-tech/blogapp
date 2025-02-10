@@ -1,19 +1,12 @@
-import { useAuth } from "@/contexts/Auth";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import Dashboard from "@/components/Dashboard";
 import Header from "@/components/Header";
+import { AnimatePresence } from "framer-motion"
 
 export default function Home() {
-  const { email, username, token } = useAuth();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!email || !username || !token) navigate("/login");
-  }, [email]);
-
   return (
-    <>
+    <AnimatePresence>
       <Header />
-    </>
+      <Dashboard />
+    </AnimatePresence>
   );
 }

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import Request from "@/lib/Requests";
 import { useAuth } from "@/contexts/Auth";
+import { toast } from "react-toastify";
 
 type UserData = {
   username: string;
@@ -45,6 +46,7 @@ export default function Signin() {
       setToken(response.data);
       setLoading(false);
       setError("");
+      toast.success("Signed In!");
     } catch (err: any) {
       setError(err.response?.data.message as any);
       setLoading(false);

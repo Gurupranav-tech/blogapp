@@ -9,9 +9,13 @@ export default function Header() {
 
   useEffect(() => {
     const abortController = new AbortController();
-    document.addEventListener("click", () => {
-      if (modal) showModal(false);
-    }, { signal: abortController.signal });
+    document.addEventListener(
+      "click",
+      () => {
+        if (modal) showModal(false);
+      },
+      { signal: abortController.signal }
+    );
     return () => abortController.abort();
   }, []);
 
@@ -33,7 +37,7 @@ export default function Header() {
             <div
               onClick={(e) => {
                 e.stopPropagation();
-                showModal(m => !m)
+                showModal((m) => !m);
               }}
               className="text-sm md:text-xl text-black hover:text-gray-600 cursor-pointer font-semibold"
             >
@@ -57,18 +61,34 @@ export default function Header() {
           </>
         )}
       </div>
-      {modal && <section style={{ left: "calc(100% - 150px)" }} className="absolute w-[150px] top-3/4 z-10 bg-white border-2 border-black rounded-lg px-4 py-1">
-        <div className="text-2xl border-b-2 pb-1 border-black">
-          <p className="text-center">{username.length >= 10 ? `${username.substring(0, 10)}...` : username}</p>
-        </div>
-        <ul className="text-center mt-2 border-b-2 border-black text-lg cursor-pointer">
-          <li onClick={() => navigate("/profile")}>Profile</li>
-          <li onClick={() => navigate("/new")}>Create</li>
-        </ul>
-        <ul className="text-center mt-1 text-lg cursor-pointer">
-          <li onClick={() => logout()}>Logout</li>
-        </ul>
-      </section>}
+      {modal && (
+        <section
+          style={{ left: "calc(100% - 150px)" }}
+          className="absolute w-[150px] top-3/4 z-10 bg-white border-2 border-black rounded-lg px-4 py-1"
+        >
+          <div className="text-2xl border-b-2 pb-1 border-black">
+            <p className="text-center">
+              {username.length >= 10
+                ? `${username.substring(0, 10)}...`
+                : username}
+            </p>
+          </div>
+          <ul className="text-center mt-2 border-b-2 border-black text-lg cursor-pointer">
+            <li onClick={() => navigate("/profile")}>Profile</li>
+            <li onClick={() => navigate("/new")}>Create</li>
+          </ul>
+          <ul className="text-center mt-1 text-lg cursor-pointer">
+            <li
+              onClick={() => {
+                logout();
+                showModal(false);
+              }}
+            >
+              Logout
+            </li>
+          </ul>
+        </section>
+      )}
     </header>
   );
 }

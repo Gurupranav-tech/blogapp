@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Request from "@/lib/Requests";
 import { useAuth } from "@/contexts/Auth";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 type UserData = {
   email: string;
@@ -39,6 +40,7 @@ export default function Login() {
       setToken(response.data);
       setLoading(false);
       setError("");
+      toast.success("Logged In!");
     } catch (err: any) {
       setError(err.response?.data.message as any);
       setLoading(false);

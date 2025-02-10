@@ -32,6 +32,8 @@ model Post {
   userid String
 
   Likes Likes[]
+
+  createdAt DateTime @default(now())
 }
 
 model Likes {

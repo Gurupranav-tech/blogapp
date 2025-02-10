@@ -2,6 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import Login from "./pages/login";
 import Signin from "./pages/signin";
 import Home from "./pages/home";
+import New from "./pages/new";
+import Profile from "./pages/profile";
+import UpdatePost from "./pages/update";
 
 const routes = createBrowserRouter([
   {
@@ -11,6 +14,18 @@ const routes = createBrowserRouter([
   {
     path: "/signin",
     element: <Signin />,
+  },
+  {
+    path: "/new",
+    element: <New />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
+  },
+  {
+    path: "/update/:id",
+    element: <UpdatePost />,
   },
   {
     path: "/",
